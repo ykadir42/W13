@@ -26,6 +26,9 @@ int main(){
 
 		printf("[parent] received: %d\n", ans);
 
+		close(fds0[1]); //closes write end
+		close(fds1[0]); //closes read end
+
 		return 0;
 	}
 	else{
@@ -37,6 +40,9 @@ int main(){
 		read(fds0[0], &ting, sizeof(int));
 		ting = ting + ting - 1;
 		write(fds1[1], &ting, sizeof(int));
+
+		close(fds0[0]); //closes read end
+		close(fds1[1]); //closes write end
 
 		return 0;
 	}
